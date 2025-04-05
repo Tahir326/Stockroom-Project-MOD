@@ -4,9 +4,6 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Stockroom Pitch",
   description: "Brand Voice, Standout Designs",
-  icons: {
-    icon: "/favicon.ico", // Favicon for all devices
-  },
 }
 
 export default function RootLayout({
