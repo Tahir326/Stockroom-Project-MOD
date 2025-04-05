@@ -1,26 +1,245 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Background */
+.bg-main-bg {
+  background-image: url("../assets/Background.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.vertical-text {
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+  word-spacing: 2px;
+  letter-spacing: 2px;
+  -webkit-writing-mode: vertical-rl;
+  -ms-writing-mode: vertical-rl;
+}
+
+@media (max-width: 768px) {
+  .vertical-text {
+    display: none;
+  }
+
+  body {
+    background-image: linear-gradient(to right, rgba(220, 220, 220, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(220, 220, 220, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-color: white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Desktop carousel */
+.rotation-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  max-width: 80vw;
+  max-height: 60vh;
 }
+
+.rotation-container .item-container {
+  position: absolute;
+  will-change: transform, filter, z-index, opacity;
+  transform-origin: center center;
+}
+
+.rotation-container .item {
+  display: block;
+  width: 100px;
+  height: auto;
+  max-width: 30vw;
+  object-fit: contain;
+  transition: all 0.9s cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+/* Mobile carousel */
+.mobile-carousel-container {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  position: relative;
+  margin-top: 10px;
+}
+
+.mobile-rotation-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.mobile-item-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  will-change: transform, filter, z-index, opacity;
+  transform-origin: center center;
+  cursor: pointer;
+  transition: all 0.8s cubic-bezier(0.42, 0, 0.58, 1);
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-item {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+
+.bg-yellow {
+  background-color: #e6d104;
+}
+
+.text-orange {
+  color: #ff6b00;
+}
+
+
+.fixed-nav-dots {
+  position: fixed;
+  bottom: 6vh;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5vw;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.6rem 0.9rem;
+  border-radius: 2rem;
+}
+
+.nav-dot {
+  position: relative;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  clip-path: ellipse(50% 50% at 50% 50%);
+  background-color: #5c5c5c;
+}
+
+.nav-dot:nth-child(1),
+.nav-dot:nth-child(5) {
+  width: 0.6rem;
+  height: 0.6rem;
+}
+
+.nav-dot:nth-child(2),
+.nav-dot:nth-child(4) {
+  width: 1rem;
+  height: 1rem;
+}
+
+.nav-dot:nth-child(3) {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.nav-dot.active {
+  transform: scale(1.2);
+  background-color: #ff6b00;
+}
+
+.nav-dot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 30%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+}
+
+/* Service cards */
+.service-card {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 8px;
+  padding: 1rem;
+  width: 250px;
+  height: auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Group hover effect */
+.group {
+  position: relative;
+}
+
+.group:hover .group-hover\:flex {
+  display: flex !important;
+}
+
+/* Responsive adjustments */
+@media (min-width: 640px) {
+  .rotation-container .item {
+    max-width: 20vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .rotation-container {
+    max-width: 60vw;
+  }
+}
+
+@media (min-width: 1024px) {
+  .rotation-container {
+    max-width: 50vw;
+  }
+
+  .rotation-container .item {
+    max-width: 15vw;
+  }
+
+  .service-card {
+    width: 200px;
+    min-height: 120px;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+

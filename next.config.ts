@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    domains: ["t4.ftcdn.net"], // Allow images from this domain
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
