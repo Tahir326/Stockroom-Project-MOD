@@ -133,7 +133,7 @@ export default function Home() {
             <div className="flex flex-col md:flex-row items-center justify-center w-full">
             
               <div className="max-lg:hidden vertical-text p-5">
-                <p className="text-black text-md font-medium">www.stockroompitch.com</p>
+                <p className="text-black text-md font-medium">stockroompitch</p>
               </div>
 
               {/* Carousel - based on screen size */}
