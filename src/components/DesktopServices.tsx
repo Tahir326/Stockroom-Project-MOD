@@ -109,7 +109,7 @@ const Services = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="text-black text-md font-medium p-5  mb-[8rem] vertical-text">
-            www.stockroompitch.com
+            stockroompitch
           </p>
         </motion.div>
 
